@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Austin Residence — Motorized Shades &amp; Daylight Walkthrough</title>
+  <meta name="description" content="Interactive walkthrough of motorized shades, hidden architectural pockets, zero-gap blackout, and seasonal Austin daylight." />
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --bg-elev: #ffffff;
+      --bg-soft: #efeae0;
+      --bg-dark: #181715;
+      --bg-dark-card: #22201d;
+      --ink: #1b1917;
+      --ink-secondary: #57524a;
+      --ink-muted: #857e73;
+      --line: #e2dcd0;
+      --line-strong: #cdc4b4;
+      --lutron: #b85d19;
+      --lutron-soft: rgba(184, 93, 25, 0.12);
+      --matter: #1f6f5c;
+      --matter-soft: rgba(31, 111, 92, 0.12);
+      --prewire: #6e675c;
+      --prewire-soft: rgba(110, 103, 92, 0.12);
+      --sun: #e59500;
+      --sun-glow: rgba(229, 149, 0, 0.24);
+      --pecan: #4d7c47;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 2px 8px rgba(27, 25, 23, 0.04);
+      --shadow-md: 0 12px 32px rgba(27, 25, 23, 0.07);
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    html.dark {
+      --bg: #141311;
+      --bg-elev: #1d1b18;
+      --bg-soft: #26231f;
+      --ink: #f3efe6;
+      --ink-secondary: #b9b1a3;
+      --ink-muted: #847c6f;
+      --line: #2f2b26;
+      --line-strong: #433d36;
+      --lutron: #e07c34;
+      --lutron-soft: rgba(224, 124, 52, 0.16);
+      --matter: #38a88d;
+      --matter-soft: rgba(56, 168, 141, 0.16);
+      --prewire: #9c9385;
+      --prewire-soft: rgba(156, 147, 133, 0.16);
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      background: var(--bg-soft);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    /* Sticky Top Navigation */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .brand-title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 11px;
+      border-radius: 999px;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .nav-links a:hover {
+      background: var(--bg-soft);
+      color: var(--ink);
+    }
+    .btn-theme {
+      border: 1px solid var(--line-strong);
+      background: var(--bg-elev);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn-theme:hover { background: var(--bg-soft); }
+
+    /* Container & Section Layout */
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    /* Hero */
+    .hero {
+      padding: 52px 0 44px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 36px;
+      align-items: end;
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--lutron);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.2vw, 48px);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+    }
+    .hero-lead {
+      font-size: 16.5px;
+      color: var(--ink-secondary);
+      max-width: 610px;
+      margin: 0;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .stat-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-val {
+      font-family: var(--font-serif);
+      font-size: 25px;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+    }
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    /* Section Headings */
+    .sec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 2.8vw, 32px);
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 4px 0 0;
+      line-height: 1.2;
+    }
+    .sec-desc {
+      color: var(--ink-secondary);
+      max-width: 560px;
+      margin: 6px 0 0;
+      font-size: 14.5px;
+    }
+
+    /* Segmented Controls / Buttons */
+    .seg-group {
+      display: inline-flex;
+      background: var(--bg-soft);
+      padding: 4px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      gap: 2px;
+      flex-wrap: wrap;
+    }
+    .seg-btn {
+      border: none;
+      background: transparent;
+      color: var(--ink-secondary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .seg-btn.active {
+      background: var(--bg-elev);
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Section 1: Bedroom Blackout Simulator */
+    .sim-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    @media (max-width: 940px) {
+      .sim-grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .window-stage-wrap {
+      background: #141312;
+      color: #f3efe6;
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .stage-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .darkness-meter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      color: #fde68a;
+    }
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 13px;
+    }
+    .slider-row input[type="range"] {
+      flex: 1;
+      accent-color: #e07c34;
+      cursor: pointer;
+    }
+    .quick-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .quick-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+    .detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .detail-item {
+      padding: 13px 15px;
+      border-radius: var(--radius-md);
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+    }
+    .detail-item strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .detail-item span {
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    /* Section 2: Unison vs Single-Motor Demo */
+    .sync-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 900px) {
+      .sync-grid { grid-template-columns: 1fr; }
+    }
+    .sync-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .tier-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+    .tier-lutron { background: var(--lutron-soft); color: var(--lutron); }
+    .tier-matter { background: var(--matter-soft); color: var(--matter); }
+    .tier-prewire { background: var(--prewire-soft); color: var(--prewire); }
+
+    /* Section 3: Interactive Floorplan & Sun Explorer */
+    .explorer-wrap {
+      display: grid;
+      grid-template-columns: 1.45fr 0.85fr;
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 980px) {
+      .explorer-wrap { grid-template-columns: 1fr; }
+    }
+    .map-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .map-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .sun-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      background: var(--bg-soft);
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      margin-top: 12px;
+    }
+    .sun-bar input[type="range"] {
+      flex: 1;
+      min-width: 150px;
+      accent-color: var(--sun);
+      cursor: pointer;
+    }
+    .sun-readout {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      min-width: 155px;
+    }
+    .legend-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--ink-secondary);
+    }
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .inspector-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 74px;
+    }
+    .win-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 12px 0 16px;
+    }
+    .win-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-strong);
+      background: var(--bg-soft);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .win-pill:hover { border-color: var(--ink); }
+    .win-pill.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .spec-box {
+      background: var(--bg-soft);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+    }
+    .spec-box .k {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+    }
+    .spec-box .v {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Section 4: Interactive Budget Customizer */
+    .budget-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 920px) {
+      .budget-grid { grid-template-columns: 1fr; }
+    }
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .toggle-row:last-child { border-bottom: none; }
+    .toggle-info strong {
+      display: block;
+      font-size: 14.5px;
+    }
+    .toggle-info span {
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+    }
+    .switch-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .price-chip {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+      min-width: 115px;
+      text-align: right;
+    }
+    input.ios-toggle {
+      appearance: none;
+      width: 42px;
+      height: 24px;
+      background: var(--line-strong);
+      border-radius: 999px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    input.ios-toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+    input.ios-toggle:checked { background: var(--lutron); }
+    input.ios-toggle:checked::after { transform: translateX(18px); }
+    input.ios-toggle:disabled { opacity: 0.65; cursor: not-allowed; }
+
+    .summary-panel {
+      background: var(--bg-dark);
+      color: #f4f0e8;
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+    .summary-total {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 600;
+      margin: 6px 0 4px;
+      letter-spacing: -0.02em;
+    }
+    .bar-compare {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .bar-track {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    /* Section 5: Architectural Catches */
+    .catches-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 800px) {
+      .catches-grid { grid-template-columns: 1fr; }
+    }
+    .catch-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .catch-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--lutron-soft);
+      color: var(--lutron);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    footer {
+      padding: 36px 0 56px;
+      color: var(--ink-muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+    }
+    footer a { color: var(--ink); }
+
+    /* SVG Floorplan Interactive Styles */
+    .fp-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: var(--bg-soft);
+      border-radius: var(--radius-md);
+    }
+    .fp-room {
+      fill: var(--bg-elev);
+      stroke: var(--ink-muted);
+      stroke-width: 2.2;
+      cursor: pointer;
+      transition: fill 0.18s ease;
+    }
+    .fp-room:hover {
+      fill: color-mix(in srgb, var(--lutron) 8%, var(--bg-elev));
+    }
+    .fp-room.selected {
+      stroke: var(--ink);
+      stroke-width: 3.4;
+    }
+    .fp-win-hit {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-title">Austin Residence · Shades &amp; Daylight</span>
+        <span class="brand-sub">Custom Build Walkthrough</span>
+      </div>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#blackout-sim">1. Bedroom Blackout</a>
+        <a href="#unison-demo">2. Unison vs. Matter</a>
+        <a href="#solar-map">3. Floorplan &amp; Sun</a>
+        <a href="#budget-builder">4. Budget</a>
+        <a href="#builder-catches">5. Framing Catches</a>
+      </nav>
+      <button type="button" class="btn-theme" id="btn-theme-toggle" aria-label="Toggle dark mode">
+        <span id="theme-icon">☾</span> <span id="theme-label">Evening Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Architectural Shading Walkthrough · v3 Solar Pass</div>
+        <h1>Invisible hardware. Zero bedroom light leaks. Smart where it counts.</h1>
+        <p class="hero-lead">
+          Because our walls are open (<code>2×6</code> framing), we can hide every roller tube inside the ceiling, recess blackout side-tracks flush into the bedroom drywall so there are <strong>zero IKEA-style side or bottom gaps</strong>, and mix <strong>Lutron Caséta PRO</strong> with <strong>Matter</strong> to save ~$8,500 without needing a pricey Lutron power panel.
+        </p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-val">0 Visible</div>
+          <div class="stat-lbl">Exposed brackets or roller tubes (all recessed in ceiling pockets)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">100% Sealed</div>
+          <div class="stat-lbl">Primary Bedroom jambs &amp; sills (PRM-N1, PRM-M1, PRM-M2)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">9 Lutron + 2 Matter</div>
+          <div class="stat-lbl">Synchronized multi-window rooms + single-motor Matter rooms</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">~$13.6k–$20.5k</div>
+          <div class="stat-lbl">Down ~35% from all-Lutron ($20.6k–$30.9k), zero panel cost</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: BEDROOM BLACKOUT SIMULATOR -->
+    <section id="blackout-sim">
+      <div class="sec-header">
+        <div>
+          <div class="eyebrow">1 · Solving the #1 Bedroom Requirement</div>
+          <h2>Why IKEA Shades Leak Light — and How Our 2×6 Walls Fix It</h2>
+          <p class="sec-desc">
+            Toggle between a standard retrofit roller shade and our new-construction <strong>Lutron Sivoia QS Recessed Blackout System</strong>, then drag the shade down to test 6:46 AM Austin sunrise on PRM-M1 &amp; PRM-M2.
+          </p>
+        </div>
+        <div class="seg-group" role="tablist" aria-label="Shade Mounting Comparison">
+          <button type="button" class="seg-btn" id="mode-ikea" data-sim-mode="ikea">Current House (IKEA Inside-Mount)</button>
+          <button type="button" class="seg-btn active" id="mode-lutron" data-sim-mode="lutron">New House (Lutron Recessed + Channels)</button>
+        </div>
+      </div>
+
+      <div class="sim-grid">
+        <div class="window-stage-wrap">
+          <div class="stage-top">
+            <span style="font-size:13px;font-weight:500;" id="stage-caption">Lutron Sivoia QS · Flush Ceiling Pocket + Recessed 2.5" Jamb Channels</span>
+            <span class="darkness-meter" id="darkness-readout">Room Darkness: 99.5% Sealed</span>
+          </div>
+
+          <!-- Interactive SVG Window Cutaway -->
+          <svg id="blackout-svg" viewBox="0 0 620 350" style="width:100%;height:auto;border-radius:10px;display:block;">
+            <defs>
+              <linearGradient id="morning-sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffd27d" />
+                <stop offset="55%" stop-color="#ff9e44" />
+                <stop offset="100%" stop-color="#5c7cfa" />
+              </linearGradient>
+              <filter id="halo-blur" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="9" />
+              </filter>
+            </defs>
+
+            <!-- Surrounding Bedroom Drywall (Darkens as shade lowers) -->
+            <rect id="sim-wall" x="0" y="0" width="620" height="350" fill="#1e1c1a" />
+
+            <!-- Window Opening Bright Morning Sky -->
+            <rect x="150" y="42" width="320" height="260" fill="url(#morning-sky)" />
+            <!-- Sun Disc outside -->
+            <circle cx="385" cy="112" r="28" fill="#fff7d6" opacity="0.95" />
+            <!-- Distant Austin Horizon / Trees -->
+            <path d="M150 255 Q220 235 290 252 T470 246 L470 302 L150 302 Z" fill="#2d3a30" opacity="0.65" />
+            <!-- Mullions (3-Panel Slider PRM-N1 look) -->
+            <line x1="256" y1="42" x2="256" y2="302" stroke="rgba(255,255,255,0.45)" stroke-width="3" />
+            <line x1="363" y1="42" x2="363" y2="302" stroke="rgba(255,255,255,0.45)" stroke-width="3" />
+
+            <!-- IKEA Mode: Blinding Perimeter Light Leak Glow (Left, Right, Top, Bottom) -->
+            <g id="ikea-leaks" opacity="0" filter="url(#halo-blur)">
+              <rect id="leak-left" x="144" y="45" width="18" height="255" fill="#fff3b0" />
+              <rect id="leak-right" x="458" y="45" width="18" height="255" fill="#fff3b0" />
+              <rect id="leak-top" x="150" y="36" width="320" height="14" fill="#fff3b0" />
+              <rect id="leak-bottom" x="150" y="292" width="320" height="16" fill="#fff3b0" />
+            </g>
+
+            <!-- Crisp Gap Slivers in IKEA Mode -->
+            <g id="ikea-slivers" opacity="0">
+              <rect x="150" y="42" width="9" height="260" fill="#fffbeb" />
+              <rect x="461" y="42" width="9" height="260" fill="#fffbeb" />
+            </g>
+
+            <!-- Shade Fabric Panel -->
+            <rect id="sim-fabric" x="142" y="42" width="336" height="245" fill="#2b2927" />
+            <!-- Hembar -->
+            <rect id="sim-hembar" x="142" y="283" width="336" height="8" fill="#3d3a36" />
+
+            <!-- IKEA Mode: Visible Ugly Brackets & Exposed Roller Tube -->
+            <g id="ikea-hardware" opacity="0">
+              <rect x="150" y="42" width="12" height="22" fill="#b8b5ad" />
+              <rect x="458" y="42" width="12" height="22" fill="#b8b5ad" />
+              <rect x="158" y="43" width="304" height="18" rx="7" fill="#d8d5ce" stroke="#78746c" stroke-width="1" />
+              <circle cx="454" cy="52" r="4" fill="#ef4444" />
+            </g>
+
+            <!-- Lutron Mode: Flush Drywall Ceiling Pocket + Recessed Jamb Channels + Sill Angle -->
+            <g id="lutron-architecture">
+              <!-- Drywall Ceiling Plane concealing the roller -->
+              <rect x="120" y="14" width="380" height="28" fill="#2a2724" stroke="#46413b" stroke-width="1" />
+              <line x1="140" y1="42" x2="480" y2="42" stroke="#6b6359" stroke-width="1.5" stroke-dasharray="4 3" />
+              <!-- Flush Jamb Side Channels (Recessed into 2x6 wall) -->
+              <rect x="138" y="42" width="14" height="260" fill="#272421" stroke="#575047" stroke-width="1" />
+              <rect x="468" y="42" width="14" height="260" fill="#272421" stroke="#575047" stroke-width="1" />
+              <!-- Sill Angle at Bottom -->
+              <rect x="138" y="298" width="344" height="8" fill="#38342f" stroke="#6b6359" stroke-width="1" />
+
+              <!-- Architectural Callout Pins -->
+              <g id="lutron-callouts" font-family="ui-monospace, monospace" font-size="10.5" fill="#e7e0d3">
+                <line x1="92" y1="28" x2="142" y2="28" stroke="#e07c34" stroke-width="1.5" />
+                <circle cx="142" cy="28" r="3.5" fill="#e07c34" />
+                <text x="14" y="31">Hidden Pocket</text>
+
+                <line x1="92" y1="168" x2="145" y2="168" stroke="#e07c34" stroke-width="1.5" />
+                <circle cx="145" cy="168" r="3.5" fill="#e07c34" />
+                <text x="14" y="171">Flush Jamb Track</text>
+
+                <line x1="478" y1="302" x2="518" y2="302" stroke="#e07c34" stroke-width="1.5" />
+                <circle cx="478" cy="302" r="3.5" fill="#e07c34" />
+                <text x="524" y="305">Wool-Pile Sill</text>
+              </g>
+            </g>
+          </svg>
+
+          <div class="slider-row">
+            <span>Shade Position:</span>
+            <input type="range" id="shade-slider" min="0" max="100" value="96" aria-label="Shade closed percentage" />
+            <span id="shade-pct-lbl" style="font-family:var(--font-mono);min-width:44px;">96%</span>
+            <button type="button" class="quick-btn" id="btn-open-close">Raise Shade</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 6px;font-family:var(--font-serif);font-size:21px;" id="explain-title">How All 4 Edges Disappear Into the Wall</h3>
+          <p style="margin:0;font-size:13.5px;color:var(--ink-secondary);" id="explain-sub">
+            Standard shades hang inside finished drywall, forcing a <code>3/4"</code> clearance gap on both sides so the fabric doesn't scrape. Because we're building with <code>2×6</code> exterior walls, we build the tracks <em>inside</em> the framing before drywall goes up:
+          </p>
+          <div class="detail-list">
+            <div class="detail-item">
+              <strong>1. Top — Recessed Ceiling Pocket (<code>4" × 4"</code>)</strong>
+              <span>The motor and roller tube sit completely above the ceiling plane with a flush closure flap. When raised, you see 100% clear glass and zero roller hardware.</span>
+            </div>
+            <div class="detail-item">
+              <strong>2. Left &amp; Right — Flush-Recessed <code>2.5"</code> Wool-Pile Channels</strong>
+              <span>Lutron’s extruded side channels get recessed into the <code>2×6</code> window jambs and mudded/trimmed flush. The blackout fabric rides <em>inside</em> dark wool-pile brushes—zero side sunbeams.</span>
+            </div>
+            <div class="detail-item">
+              <strong>3. Bottom — Blackout Wool-Pile Hembar + Sill Angle</strong>
+              <span>Instead of a hard metal bar hovering over an uneven sill, a dense brush strip along the bottom bar seats into a slim sill angle at <code>100%</code> closed.</span>
+            </div>
+            <div class="detail-item">
+              <strong>4. Sneaky Light-Leak Catch — Pocket Doors <code>208</code> &amp; <code>209</code></strong>
+              <span>Sheet A2.3 currently specs <code>1'-6"</code> glass transoms above the Closet (<code>208</code>) and Hallway (<code>209</code>) doors. Making those two transoms solid blocks <code>6:46 AM</code> hall sun (<code>H2-K1/L1</code>) and <code>8:21 PM</code> closet sun (<code>PCL-O1</code>).</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: UNISON VS SINGLE-MOTOR MATTER -->
+    <section id="unison-demo">
+      <div class="sec-header">
+        <div>
+          <div class="eyebrow">2 · Smart Hybrid Strategy</div>
+          <h2>Where Lutron’s “Unison” Shines — and Where Matter Saves $7k+</h2>
+          <p class="sec-desc">
+            Lutron’s signature magic is <strong>Intelligent Hembar Alignment</strong>: multiple shades in the same room travel at the exact same speed within <code>1/8"</code>. Click <strong>Test Shade Motion</strong> to see why we use Lutron in multi-window rooms and Matter in single-motor rooms.
+          </p>
+        </div>
+        <button type="button" class="btn-theme" id="btn-run-unison" style="background:var(--ink);color:var(--bg);border-color:var(--ink);padding:9px 18px;font-size:13px;">
+          ▶ Test Shade Motion
+        </button>
+      </div>
+
+      <div class="sync-grid">
+        <!-- Card 1: Lutron Unison -->
+        <div class="sync-card">
+          <div>
+            <span class="tier-tag tier-lutron">Tier 1 · Lutron Unison</span>
+            <h3 style="margin:10px 0 4px;font-family:var(--font-serif);font-size:20px;">Primary, Living &amp; Game Room</h3>
+            <p style="margin:0;font-size:13px;color:var(--ink-secondary);">
+              3 windows per room. All bottom bars stay locked within <code>1/8"</code> from top to bottom—quiet (<code>&lt;38 dBA</code>) and rock-solid reliable.
+            </p>
+          </div>
+          <svg viewBox="0 0 280 120" style="width:100%;background:var(--bg-soft);border-radius:10px;">
+            <rect x="20" y="14" width="70" height="92" fill="#dbeafe" stroke="var(--line-strong)" />
+            <rect x="105" y="14" width="70" height="92" fill="#dbeafe" stroke="var(--line-strong)" />
+            <rect x="190" y="14" width="70" height="92" fill="#dbeafe" stroke="var(--line-strong)" />
+            <rect class="anim-lutron" x="20" y="14" width="70" height="68" fill="#b85d19" opacity="0.88" />
+            <rect class="anim-lutron" x="105" y="14" width="70" height="68" fill="#b85d19" opacity="0.88" />
+            <rect class="anim-lutron" x="190" y="14" width="70" height="68" fill="#b85d19" opacity="0.88" />
+            <line id="lutron-laser" x1="12" y1="82" x2="268" y2="82" stroke="#b85d19" stroke-width="1.5" stroke-dasharray="3 3" />
+          </svg>
+          <div style="font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);">
+            9 Shades Total · Caséta PRO Hub
+          </div>
+        </div>
+
+        <!-- Card 2: Cheap Multi-Window Drift (What we avoid) -->
+        <div class="sync-card">
+          <div>
+            <span class="tier-tag tier-prewire">What We Avoid in Big Rooms</span>
+            <h3 style="margin:10px 0 4px;font-family:var(--font-serif);font-size:20px;">Budget Motors Side-by-Side</h3>
+            <p style="margin:0;font-size:13px;color:var(--ink-secondary);">
+              Standard motors start 0.5s apart and run at slightly different RPMs—noticeable when 3 tall windows sit next to each other.
+            </p>
+          </div>
+          <svg viewBox="0 0 280 120" style="width:100%;background:var(--bg-soft);border-radius:10px;">
+            <rect x="20" y="14" width="70" height="92" fill="#dbeafe" stroke="var(--line-strong)" />
+            <rect x="105" y="14" width="70" height="92" fill="#dbeafe" stroke="var(--line-strong)" />
+            <rect x="190" y="14" width="70" height="92" fill="#dbeafe" stroke="var(--line-strong)" />
+            <rect id="drift-1" x="20" y="14" width="70" height="68" fill="#78716c" opacity="0.85" />
+            <rect id="drift-2" x="105" y="14" width="70" height="54" fill="#78716c" opacity="0.85" />
+            <rect id="drift-3" x="190" y="14" width="70" height="76" fill="#78716c" opacity="0.85" />
+          </svg>
+          <div style="font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);">
+            Skipped in Multi-Window Rooms
+          </div>
+        </div>
+
+        <!-- Card 3: Single-Motor Matter Sweet Spot -->
+        <div class="sync-card">
+          <div>
+            <span class="tier-tag tier-matter">Tier 2 · Single-Motor Matter</span>
+            <h3 style="margin:10px 0 4px;font-family:var(--font-serif);font-size:20px;">Curved Dining Bay &amp; Office</h3>
+            <p style="margin:0;font-size:13px;color:var(--ink-secondary);">
+              When <strong>1 curved sheer track</strong> glides across <code>DIN-D1..D4</code> (or 1 shade covers <code>OFF-G1</code>), there is nothing to be out of sync with!
+            </p>
+          </div>
+          <svg viewBox="0 0 280 120" style="width:100%;background:var(--bg-soft);border-radius:10px;">
+            <!-- Curved banquette representation -->
+            <rect x="30" y="14" width="220" height="92" rx="18" fill="#dbeafe" stroke="var(--line-strong)" />
+            <line x1="85" y1="14" x2="85" y2="106" stroke="rgba(0,0,0,0.12)" />
+            <line x1="140" y1="14" x2="140" y2="106" stroke="rgba(0,0,0,0.12)" />
+            <line x1="195" y1="14" x2="195" y2="106" stroke="rgba(0,0,0,0.12)" />
+            <!-- Curtain sweeping horizontally -->
+            <rect id="matter-curtain" x="30" y="14" width="165" height="92" rx="12" fill="#1f6f5c" opacity="0.78" />
+          </svg>
+          <div style="font-family:var(--font-mono);font-size:12px;color:var(--matter);">
+            Saves ~$4,000+ · Same Google Home App
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: INTERACTIVE FLOORPLAN & SOLAR EXPLORER -->
+    <section id="solar-map">
+      <div class="sec-header">
+        <div>
+          <div class="eyebrow">3 · Calibrated to Our Exact Lot (<code>True North = +10°</code>)</div>
+          <h2>Interactive Floorplan, Sun Angles &amp; Window Explorer</h2>
+          <p class="sec-desc">
+            Switch between the <strong>2nd Floor</strong> and <strong>1st Floor</strong>, scrub the Austin sun from sunrise to sunset across seasons, and click any room or window ID to see why it gets Lutron, Matter, or Pre-Wire Only.
+          </p>
+        </div>
+        <div class="seg-group" role="tablist" aria-label="Floor Selector">
+          <button type="button" class="seg-btn active" data-floor-btn="second">2nd Floor (Primary &amp; Game Room)</button>
+          <button type="button" class="seg-btn" data-floor-btn="first">1st Floor (Living, Dining, Office &amp; ADU)</button>
+        </div>
+      </div>
+
+      <div class="explorer-wrap">
+        <div class="map-card">
+          <div class="map-toolbar">
+            <div class="seg-group" aria-label="Season Selector">
+              <button type="button" class="seg-btn" data-season-btn="2026-06-21">Summer (Jun 21)</button>
+              <button type="button" class="seg-btn active" data-season-btn="2026-03-20">Equinox (Mar/Sep)</button>
+              <button type="button" class="seg-btn" data-season-btn="2026-12-21">Winter (Dec 21)</button>
+            </div>
+            <label style="font-size:12.5px;color:var(--ink-secondary);display:flex;align-items:center;gap:6px;cursor:pointer;">
+              <input type="checkbox" id="chk-pecan" checked style="accent-color:var(--pecan);" />
+              4 Heritage Pecan Trees Shade
+            </label>
+          </div>
+
+          <svg id="floorplan-svg" class="fp-svg" viewBox="1080 340 1230 780" aria-label="Interactive architectural floorplan with live sunbeams"></svg>
+
+          <div class="sun-bar">
+            <button type="button" class="btn-theme" id="btn-play-sun" style="padding:5px 12px;">▶ Play Day</button>
+            <input type="range" id="sun-slider" min="410" max="1170" step="5" value="540" aria-label="Time of day" />
+            <span class="sun-readout" id="sun-clock-lbl">9:00 AM · E 098° (28° alt)</span>
+          </div>
+
+          <div class="legend-row">
+            <span><i class="legend-dot" style="background:var(--lutron);"></i><strong>Tier 1: Lutron</strong> (9 active)</span>
+            <span><i class="legend-dot" style="background:var(--matter);"></i><strong>Tier 2: Matter</strong> (2 active)</span>
+            <span><i class="legend-dot" style="background:var(--prewire);"></i><strong>Tier 3: Pre-Wire <code>$0</code> Day 1</strong></span>
+            <span><i class="legend-dot" style="background:#94a3b8;"></i><strong>Diffused Glass Block / Skip</strong></span>
+            <span><i class="legend-dot" style="background:var(--pecan);"></i><strong>Heritage Pecan Canopy</strong></span>
+          </div>
+        </div>
+
+        <!-- Room & Window Inspector -->
+        <aside class="inspector-card" id="room-inspector">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+            <span class="tier-tag tier-lutron" id="insp-tier">Tier 1 · Lutron Sivoia QS</span>
+            <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);" id="insp-cost">$5,200 – $7,200</span>
+          </div>
+          <h3 style="font-family:var(--font-serif);font-size:24px;margin:10px 0 4px;" id="insp-room-name">Primary Bedroom</h3>
+          <p style="margin:0;font-size:13.5px;color:var(--ink-secondary);" id="insp-room-why"></p>
+
+          <div style="margin-top:14px;font-size:11.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-muted);">
+            Windows in This Room (Click ID)
+          </div>
+          <div class="win-pill-list" id="insp-win-pills"></div>
+
+          <div id="insp-win-detail" style="border-top:1px solid var(--line);padding-top:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <strong style="font-family:var(--font-mono);font-size:15px;" id="wdet-id">PRM-N1</strong>
+              <span style="font-size:12.5px;color:var(--ink-secondary);" id="wdet-type">3-Panel Horizontal Slider</span>
+            </div>
+            <div class="spec-grid">
+              <div class="spec-box">
+                <div class="k">Size &amp; Head</div>
+                <div class="v" id="wdet-size">9'-0" × 6'-0" (9' Head)</div>
+              </div>
+              <div class="spec-box">
+                <div class="k">Faces</div>
+                <div class="v" id="wdet-face">S · 170° (2' OH)</div>
+              </div>
+              <div class="spec-box">
+                <div class="k">Summer / Winter Sun</div>
+                <div class="v" id="wdet-sun">0h / 9.8h Direct</div>
+              </div>
+              <div class="spec-box">
+                <div class="k">Est. Window Cost</div>
+                <div class="v" id="wdet-price">$2,200 – $3,000</div>
+              </div>
+            </div>
+            <p style="margin:8px 0 0;font-size:13px;color:var(--ink-secondary);" id="wdet-rec"></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SECTION 4: INTERACTIVE BUDGET CUSTOMIZER -->
+    <section id="budget-builder">
+      <div class="sec-header">
+        <div>
+          <div class="eyebrow">4 · Interactive Cost Calculator</div>
+          <h2>Customize Our Day-1 Scope</h2>
+          <p class="sec-desc">
+            Every window still gets cheap <code>16/2</code> wire pulled while the walls are open—toggle optional rooms below to see how our Day-1 investment compares against an all-Lutron quote.
+          </p>
+        </div>
+      </div>
+
+      <div class="budget-grid">
+        <div class="card">
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <strong>Primary Bedroom — Zero-Gap Blackout (<code>PRM-N1</code>, <code>PRM-M1</code>, <code>PRM-M2</code>)</strong>
+              <span>3× Lutron Sivoia QS Wireless + recessed pockets + flush <code>2.5"</code> side channels &amp; sill angles (Must-Have)</span>
+            </div>
+            <div class="switch-wrap">
+              <span class="price-chip">$5,200 – $7,200</span>
+              <input type="checkbox" class="ios-toggle budget-chk" data-min="5200" data-max="7200" data-lutron="3" data-matter="0" checked disabled aria-label="Primary Bedroom Blackout" />
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <strong>Living Room Glare &amp; Privacy (<code>LIV-D108</code> + <code>LIV-E1</code>)</strong>
+              <span>2× Lutron Triathlon/Serena 12V in <code>10'</code> ceiling pockets (stops <code>6:46a–12:41p</code> East glare on Living TV)</span>
+            </div>
+            <div class="switch-wrap">
+              <span class="price-chip">$2,650 – $4,050</span>
+              <input type="checkbox" class="ios-toggle budget-chk" data-min="2650" data-max="4050" data-lutron="2" data-matter="0" checked aria-label="Living Room Shades" />
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <strong>Courtyard North Corner Window (<code>DIN-C1</code> — Optional Unison)</strong>
+              <span>1× Lutron 12V to match adjacent <code>LIV-D108</code> (<code>DIN-C1</code> faces North <code>350°</code> with <code>0h</code> Fall–Spring sun—easy save!)</span>
+            </div>
+            <div class="switch-wrap">
+              <span class="price-chip">$850 – $1,250</span>
+              <input type="checkbox" class="ios-toggle budget-chk" data-min="850" data-max="1250" data-lutron="1" data-matter="0" checked aria-label="Dining North Window C1" />
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <strong>Game Room TV Glare Set (<code>GAM-J1</code>, <code>GAM-K1</code>, <code>GAM-S1</code>)</strong>
+              <span>3× Lutron 12V on <code>12'</code> stair window + East clerestory + West casement (skips North Pecan-shaded <code>18"</code> slots)</span>
+            </div>
+            <div class="switch-wrap">
+              <span class="price-chip">$2,250 – $3,300</span>
+              <input type="checkbox" class="ios-toggle budget-chk" data-min="2250" data-max="3300" data-lutron="3" data-matter="0" checked aria-label="Game Room Glare Set" />
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <strong>Curved Dining Banquette (<code>DIN-D1..D4</code> — Matter Curved Sheer Track)</strong>
+              <span>1× Recessed Matter-over-Thread curved ceiling track + custom sheer drapery (saves ~$2.9k vs. Lutron track)</span>
+            </div>
+            <div class="switch-wrap">
+              <span class="price-chip">$1,100 – $2,100</span>
+              <input type="checkbox" class="ios-toggle budget-chk" data-min="1100" data-max="2100" data-lutron="0" data-matter="1" checked aria-label="Curved Dining Matter Track" />
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <strong>Office West Window (<code>OFF-G1</code> — Single Matter Shade)</strong>
+              <span>1× SmartWings Hardwired 12V Matter-over-Thread roller in <code>9'</code> pocket (<code>2:51p–8:21p</code> West sun)</span>
+            </div>
+            <div class="switch-wrap">
+              <span class="price-chip">$250 – $400</span>
+              <input type="checkbox" class="ios-toggle budget-chk" data-min="250" data-max="400" data-lutron="0" data-matter="1" checked aria-label="Office Matter Shade" />
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <strong>ADU Bedroom (<code>AD-BED-B1/B2</code>, <code>G1/G2</code> — Optional Day 1 Matter)</strong>
+              <span>Pre-wired <code>$0</code> Day 1 by default; toggle ON if we want 4× Matter blackout shades installed before move-in</span>
+            </div>
+            <div class="switch-wrap">
+              <span class="price-chip">$900 – $1,250</span>
+              <input type="checkbox" class="ios-toggle budget-chk" data-min="900" data-max="1250" data-lutron="0" data-matter="4" aria-label="ADU Bedroom Matter Shades" />
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <strong>Include Builder Pocket &amp; Jamb Framing Allowance</strong>
+              <span>Framing ceiling pockets + vaulted bedroom headers + flush <code>2.5"</code> jamb channels</span>
+            </div>
+            <div class="switch-wrap">
+              <span class="price-chip">$1,500 – $3,000</span>
+              <input type="checkbox" class="ios-toggle budget-chk" data-min="1500" data-max="3000" data-lutron="0" data-matter="0" aria-label="Builder Framing Allowance" />
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-panel">
+          <div style="font-family:var(--font-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:0.08em;color:#d6cfc2;">
+            Selected Day-1 Investment
+          </div>
+          <div class="summary-total" id="calc-total">$13,610 – $20,550</div>
+          <div style="font-size:13px;color:#b8b0a2;" id="calc-motors">
+            Includes Caséta PRO Hub, plug-in/12V power supplies &amp; whole-home <code>16/2</code> pre-wire ($1,310–$2,250) · <strong>9 Lutron + 2 Matter motors</strong>
+          </div>
+
+          <div class="bar-compare">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:#d6cfc2;">
+                <span>Your Selected Plan (Midpoint)</span>
+                <strong id="bar-yours-lbl">$17,080</strong>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" id="bar-yours" style="width:47%;background:#e07c34;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:#9e9689;">
+                <span>v1 Core All-Lutron (17 Units)</span>
+                <span>$25,730 avg</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:71%;background:rgba(255,255,255,0.28);"></div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:#9e9689;">
+                <span>Full-House All-Lutron (28 Units)</span>
+                <span>$35,980 avg</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:100%;background:rgba(255,255,255,0.16);"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.14);display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;color:#d6cfc2;">Savings vs. Core All-Lutron:</span>
+            <strong style="font-family:var(--font-mono);font-size:15px;color:#6ee7b7;" id="calc-savings">~$8,650 saved</strong>
+          </div>
+          <div style="margin-top:8px;font-size:12px;color:#9e9689;" id="caseta-cap-note">
+            ✓ Caséta 75-device hub check: 9 shade devices leaves 65+ slots for switches &amp; Picos on 1 hub.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: 6 ARCHITECTURAL & FRAMING CATCHES -->
+    <section id="builder-catches">
+      <div class="sec-header">
+        <div>
+          <div class="eyebrow">5 · Ready for Architect &amp; Builder</div>
+          <h2>Six Blueprint Catches We Flagged Before Framing</h2>
+        </div>
+      </div>
+
+      <div class="catches-grid">
+        <div class="catch-card">
+          <div class="catch-num">01</div>
+          <div>
+            <strong style="font-size:15px;">Vaulted Primary Ceiling Pockets (<code>PRM-N1</code>, <code>PRM-M1/M2</code>)</strong>
+            <p style="margin:4px 0 0;font-size:13.5px;color:var(--ink-secondary);">
+              The Primary roof slopes down to <code>~9'-1"</code> above <code>PRM-N1</code> (<code>9'×6'</code> South slider) and <code>12'-0"</code> above <code>PRM-M1/M2</code>. Framing recessed head pockets + <code>2.5"</code> jamb channels must be drawn into the framing set now.
+            </p>
+          </div>
+        </div>
+
+        <div class="catch-card">
+          <div class="catch-num">02</div>
+          <div>
+            <strong style="font-size:15px;">Make Pocket Door Transoms <code>208</code> &amp; <code>209</code> Solid/Opaque</strong>
+            <p style="margin:4px 0 0;font-size:13.5px;color:var(--ink-secondary);">
+              Hallway clerestories <code>H2-K1/L1</code> get <code>6:46 AM</code> East sun and Closet <code>PCL-O1</code> gets <code>8:21 PM</code> summer West sun. Omitting or frosting those two interior transoms keeps the bedroom pitch-black and saves ~$4,000 in extra shades.
+            </p>
+          </div>
+        </div>
+
+        <div class="catch-card">
+          <div class="catch-num">03</div>
+          <div>
+            <strong style="font-size:15px;">Low-Profile Folding Cranks on Casements <code>PRM-M1</code> &amp; <code>PRM-M2</code></strong>
+            <p style="margin:4px 0 0;font-size:13.5px;color:var(--ink-secondary);">
+              Standard projecting casement cranks can bump blackout fabric inside recessed jamb channels. Specify folding/nested hardware on the window order.
+            </p>
+          </div>
+        </div>
+
+        <div class="catch-card">
+          <div class="catch-num">04</div>
+          <div>
+            <strong style="font-size:15px;">Update Electrical Note #1 (<code>16/2</code> Low-Voltage + 1 Dining 120V Outlet)</strong>
+            <p style="margin:4px 0 0;font-size:13.5px;color:var(--ink-secondary);">
+              Pull <code>16/2</code> wire from every window pocket back to a closet/attic outlet (for plug-in / Altronix 12V power—no Lutron panel), plus <strong>1 recessed 120V outlet</strong> tucked at one end of the curved <code>DIN-D1..D4</code> track.
+            </p>
+          </div>
+        </div>
+
+        <div class="catch-card">
+          <div class="catch-num">05</div>
+          <div>
+            <strong style="font-size:15px;">Frame <code>≥ 20"</code> Wide Pockets Over <code>1'-6"</code> (<code>18"</code>) Narrow Windows</strong>
+            <p style="margin:4px 0 0;font-size:13.5px;color:var(--ink-secondary);">
+              Windows <code>A</code>, <code>B</code>, and <code>I</code> are <code>18"</code> wide—narrower than Lutron’s <code>19.5"</code> Triathlon roller minimum. Making any ceiling pockets above them <code>20"+</code> wide keeps future shade options wide open.
+            </p>
+          </div>
+        </div>
+
+        <div class="catch-card">
+          <div class="catch-num">06</div>
+          <div>
+            <strong style="font-size:15px;">Straight Pocket Inside <code>10'</code> Ceiling Above Arched <code>LIV-D108</code></strong>
+            <p style="margin:4px 0 0;font-size:13.5px;color:var(--ink-secondary);">
+              Recessing a straight <code>4.5"×4.5"</code> pocket in the flat <code>10'</code> ceiling just inside the <code>12'×10'</code> courtyard doors preserves the curved top corners 100% unobstructed whenever the shade is up.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <div>Austin Residence · Motorized Shades &amp; Daylight Walkthrough</div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;">
+        <a href="https://mikegofficial.github.io/house-floorplan/" target="_blank" rel="noopener">Open Full Vector CAD &amp; Sun Viewer ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // ====================================================================
+      // 1. Theme Toggle
+      // ====================================================================
+      const themeBtn = document.getElementById("btn-theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+      const themeLbl = document.getElementById("theme-label");
+      themeBtn.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        themeIcon.textContent = isDark ? "☀" : "☾";
+        themeLbl.textContent = isDark ? "Daylight Mode" : "Evening Mode";
+      });
+
+      // ====================================================================
+      // 2. Bedroom Blackout Simulator (IKEA vs Lutron Recessed)
+      // ====================================================================
+      let simMode = "lutron";
+      const shadeSlider = document.getElementById("shade-slider");
+      const shadePctLbl = document.getElementById("shade-pct-lbl");
+      const btnOpenClose = document.getElementById("btn-open-close");
+      const simFabric = document.getElementById("sim-fabric");
+      const simHembar = document.getElementById("sim-hembar");
+      const simWall = document.getElementById("sim-wall");
+      const ikeaLeaks = document.getElementById("ikea-leaks");
+      const ikeaSlivers = document.getElementById("ikea-slivers");
+      const ikeaHardware = document.getElementById("ikea-hardware");
+      const lutronArch = document.getElementById("lutron-architecture");
+      const stageCaption = document.getElementById("stage-caption");
+      const darknessReadout = document.getElementById("darkness-readout");
+      const explainTitle = document.getElementById("explain-title");
+
+      function updateBlackoutSim() {
+        const pct = Number(shadeSlider.value);
+        shadePctLbl.textContent = pct + "%";
+        btnOpenClose.textContent = pct > 50 ? "Raise Shade" : "Close Shade (100%)";
+
+        if (simMode === "lutron") {
+          // Lutron mode: wider fabric captured inside jamb channels, goes all the way to 260px
+          const maxH = 258;
+          const h = (pct / 100) * maxH;
+          simFabric.setAttribute("x", "142");
+          simFabric.setAttribute("width", "336");
+          simFabric.setAttribute("height", h.toFixed(1));
+          simHembar.setAttribute("x", "142");
+          simHembar.setAttribute("width", "336");
+          simHembar.setAttribute("y", (42 + Math.max(0, h - 5)).toFixed(1));
+          simHembar.style.opacity = pct > 2 ? "1" : "0";
+
+          ikeaLeaks.setAttribute("opacity", "0");
+          ikeaSlivers.setAttribute("opacity", "0");
+          ikeaHardware.setAttribute("opacity", "0");
+          lutronArch.setAttribute("opacity", "1");
+
+          const darkPct = (pct * 0.996).toFixed(1);
+          darknessReadout.textContent = `Room Darkness: ${darkPct}% ${pct >= 99 ? "(Zero Edge Gaps)" : ""}`;
+          darknessReadout.style.color = pct >= 95 ? "#6ee7b7" : "#fde68a";
+
+          const lum = Math.round(46 - (pct / 100) * 32);
+          simWall.setAttribute("fill", `rgb(${lum}, ${lum - 2}, ${lum - 4})`);
+          stageCaption.textContent = "Lutron Sivoia QS · Hidden Ceiling Pocket + Flush 2.5\" Jamb Channels";
+          explainTitle.textContent = "How All 4 Edges Disappear Into the Wall";
+        } else {
+          // IKEA inside-mount mode: narrower fabric leaving 9px side gaps + bottom gap + exposed roller
+          const maxH = 246;
+          const h = (pct / 100) * maxH;
+          simFabric.setAttribute("x", "159");
+          simFabric.setAttribute("width", "302");
+          simFabric.setAttribute("height", h.toFixed(1));
+          simHembar.setAttribute("x", "159");
+          simHembar.setAttribute("width", "302");
+          simHembar.setAttribute("y", (42 + Math.max(0, h - 4)).toFixed(1));
+          simHembar.style.opacity = "1";
+
+          const leakOp = Math.min(1, pct / 85);
+          ikeaLeaks.setAttribute("opacity", leakOp.toFixed(2));
+          ikeaSlivers.setAttribute("opacity", (leakOp * 0.95).toFixed(2));
+          ikeaHardware.setAttribute("opacity", "1");
+          lutronArch.setAttribute("opacity", "0");
+
+          const darkPct = (pct * 0.82).toFixed(0);
+          darknessReadout.textContent = `Room Darkness: ~${darkPct}% (Bright Side & Sill Halos)`;
+          darknessReadout.style.color = "#fca5a5";
+
+          const lum = Math.round(52 - (pct / 100) * 18);
+          simWall.setAttribute("fill", `rgb(${lum + 6}, ${lum + 3}, ${lum - 2})`);
+          stageCaption.textContent = "Standard Inside-Mount (IKEA) · Exposed Roller + 3/4\" Side & Bottom Gaps";
+          explainTitle.textContent = "Why Standard Inside-Mount Shades Halo in the Morning";
+        }
+      }
+
+      document.querySelectorAll("[data-sim-mode]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          simMode = btn.dataset.simMode;
+          document.querySelectorAll("[data-sim-mode]").forEach((b) => b.classList.toggle("active", b === btn));
+          if (Number(shadeSlider.value) < 70) shadeSlider.value = "100";
+          updateBlackoutSim();
+        });
+      });
+
+      shadeSlider.addEventListener("input", updateBlackoutSim);
+      btnOpenClose.addEventListener("click", () => {
+        const target = Number(shadeSlider.value) > 50 ? 0 : 100;
+        const start = Number(shadeSlider.value);
+        const t0 = performance.now();
+        function step(now) {
+          const p = Math.min(1, (now - t0) / 650);
+          const ease = 0.5 - 0.5 * Math.cos(Math.PI * p);
+          shadeSlider.value = String(Math.round(start + (target - start) * ease));
+          updateBlackoutSim();
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+      updateBlackoutSim();
+
+      // ====================================================================
+      // 3. Unison vs Drift vs Single-Motor Animation
+      // ====================================================================
+      let unisonRunning = false;
+      document.getElementById("btn-run-unison").addEventListener("click", () => {
+        if (unisonRunning) return;
+        unisonRunning = true;
+        const lutronBars = document.querySelectorAll(".anim-lutron");
+        const laser = document.getElementById("lutron-laser");
+        const d1 = document.getElementById("drift-1");
+        const d2 = document.getElementById("drift-2");
+        const d3 = document.getElementById("drift-3");
+        const curtain = document.getElementById("matter-curtain");
+
+        const t0 = performance.now();
+        const dur = 2400;
+        function frame(now) {
+          const t = Math.min(1, (now - t0) / dur);
+          // Go up first half, down second half
+          const wave = t < 0.5 ? 1 - (t * 2) : (t - 0.5) * 2;
+          const ease = 0.5 - 0.5 * Math.cos(Math.PI * wave);
+
+          // Lutron: locked together
+          const lh = 8 + ease * 82;
+          lutronBars.forEach((r) => r.setAttribute("height", lh.toFixed(1)));
+          laser.setAttribute("y1", (14 + lh).toFixed(1));
+          laser.setAttribute("y2", (14 + lh).toFixed(1));
+
+          // Drift: staggered speeds & offsets
+          const w1 = Math.max(0, Math.min(1, wave * 1.12 - 0.04));
+          const w2 = Math.max(0, Math.min(1, wave * 0.82 + 0.08));
+          const w3 = Math.max(0, Math.min(1, wave * 1.22 - 0.12));
+          d1.setAttribute("height", (8 + w1 * 82).toFixed(1));
+          d2.setAttribute("height", (8 + w2 * 74).toFixed(1));
+          d3.setAttribute("height", (8 + w3 * 84).toFixed(1));
+
+          // Matter single curved curtain: smooth horizontal sweep
+          curtain.setAttribute("width", (24 + ease * 212).toFixed(1));
+
+          if (t < 1) {
+            requestAnimationFrame(frame);
+          } else {
+            unisonRunning = false;
+          }
+        }
+        requestAnimationFrame(frame);
+      });
+
+      // ====================================================================
+      // 4. Calibrated Floorplan & Solar Engine (All Rooms & Window IDs)
+      // ====================================================================
+      const ROOM_POLYS = {
+        first: [
+          { id: "living", label: "LIVING", x: 1780, y: 720, tier: "lutron", pts: [[1612,535],[1965,535],[1965,918],[1612,918]] },
+          { id: "dining", label: "DINING", x: 1495, y: 965, tier: "matter", pts: [[1382,855],[1612,855],[1612,1073],[1505,1074],[1462,1066],[1424,1045],[1396,1011],[1380,960]] },
+          { id: "kitchen", label: "KITCHEN", x: 1500, y: 695, tier: "skip", pts: [[1387,535],[1612,535],[1612,855],[1387,855]] },
+          { id: "screened-patio", label: "PATIO", x: 1270, y: 805, tier: "skip", pts: [[1160,687],[1382,687],[1382,918],[1160,918]] },
+          { id: "mud-room", label: "MUD", x: 1270, y: 610, tier: "skip", pts: [[1160,535],[1382,535],[1382,687],[1160,687]] },
+          { id: "office", label: "OFFICE", x: 2070, y: 500, tier: "matter", pts: [[1975,382],[2161,382],[2161,558],[2197,558],[2197,624],[1975,624]] },
+          { id: "bath-1", label: "BATH 1", x: 1885, y: 455, tier: "prewire", pts: [[1805,382],[1975,382],[1975,535],[1805,535]] },
+          { id: "entry", label: "ENTRY", x: 2110, y: 760, tier: "skip", pts: [[1965,624],[2197,624],[2197,673],[2253,673],[2253,922],[1965,922]] },
+          { id: "reading-nook", label: "READING", x: 2180, y: 995, tier: "skip", pts: [[2106,922],[2253,922],[2253,1069],[2106,1069]] },
+          { id: "powder", label: "POWDER", x: 2038, y: 1015, tier: "skip", pts: [[1970,922],[2106,922],[2106,1069],[1970,1069]] },
+          { id: "garage", label: "2-CAR GARAGE", x: 950, y: 730, tier: "skip", pts: [[742,535],[1160,535],[1160,918],[742,918]] },
+          { id: "adu-bdrm", label: "ADU BDRM", x: 280, y: 515, tier: "prewire", pts: [[174,375],[389,375],[389,651],[174,651]] },
+          { id: "adu-bath", label: "ADU BATH", x: 445, y: 500, tier: "skip", pts: [[389,375],[495,375],[495,651],[389,651]] },
+          { id: "adu-living", label: "ADU LIVING", x: 330, y: 800, tier: "skip", pts: [[176,651],[495,651],[495,923],[410,923],[410,959],[176,959]] }
+        ],
+        second: [
+          { id: "primary-bdrm", label: "PRIMARY BEDROOM (VAULTED)", x: 1322, y: 792, tier: "lutron", pts: [[1155,664],[1490,664],[1490,918],[1155,918]] },
+          { id: "primary-clst", label: "PRIMARY CLOSET", x: 1322, y: 596, tier: "prewire", pts: [[1155,530],[1490,530],[1490,664],[1155,664]] },
+          { id: "bath-3", label: "PRIMARY BATH", x: 1620, y: 685, tier: "prewire", pts: [[1490,530],[1745,530],[1745,850],[1490,850]] },
+          { id: "bath-2", label: "BATH 2", x: 1820, y: 615, tier: "prewire", pts: [[1745,530],[1890,530],[1890,705],[1745,705]] },
+          { id: "laundry", label: "LAUNDRY", x: 1815, y: 778, tier: "skip", pts: [[1745,705],[1890,705],[1890,850],[1745,850]] },
+          { id: "hallway-2", label: "2ND FL HALL", x: 1695, y: 885, tier: "prewire", pts: [[1490,850],[1890,850],[1890,918],[1490,918]] },
+          { id: "game-room", label: "GAME ROOM & STAIRS", x: 2045, y: 720, tier: "lutron", pts: [[1890,530],[2196,530],[2196,918],[1890,918]] }
+        ]
+      };
+
+      const TREES = [
+        { label: "24\" Pecan", cx: 1519, cy: 305, r: 210, h: 32, base: 9 },
+        { label: "24\" Pecan", cx: 1661, cy: 305, r: 216, h: 33, base: 9 },
+        { label: "19\" Pecan", cx: 2370, cy: 305, r: 175, h: 27, base: 8.5 },
+        { label: "22\" Pecan", cx: 2407, cy: 470, r: 195, h: 30, base: 8.5 }
+      ];
+
+      const ROOM_INFO = {
+        "primary-bdrm": {
+          name: "Primary Bedroom (Vaulted)",
+          tierLbl: "Tier 1 · Lutron Sivoia QS Wireless",
+          tierCls: "tier-lutron",
+          cost: "$5,200 – $7,200",
+          why: "Must-have 100% blackout + 3 windows moving in 1/8\" unison. East casements take instant 6:46a sunrise sun; South slider takes 9.8h/day of low winter sun. Uses recessed ceiling pockets + flush 2.5\" jamb side channels + sill angles."
+        },
+        "game-room": {
+          name: "Game Room & Stairwell",
+          tierLbl: "Tier 1 · 3× Lutron + 4× Pre-Wire",
+          tierCls: "tier-lutron",
+          cost: "$2,250 – $3,300",
+          why: "Has 7 openings! East windows GAM-J1 & GAM-K1 blast morning sun directly onto the West-wall TV, and GAM-S1 gets hot West afternoon sun—so those 3 get synchronized Lutron rollers, while the 4 narrow 18\" Pecan/North slots get pre-wired for $0 Day 1."
+        },
+        "living": {
+          name: "Living Room",
+          tierLbl: "Tier 1 · Lutron Triathlon/Serena 12V",
+          tierCls: "tier-lutron",
+          cost: "$2,650 – $4,050",
+          why: "12'×10' courtyard glass wall (LIV-D108) pours 6 hours of morning sun straight onto the West-wall Living TV. Straight recessed pocket in the 10' flat ceiling keeps the curved door arches completely clear when open."
+        },
+        "dining": {
+          name: "Curved Dining Banquette",
+          tierLbl: "Tier 2 · Matter Curved Track (+ Opt. DIN-C1)",
+          tierCls: "tier-matter",
+          cost: "$1,100 – $2,100 (+ opt. $850 DIN-C1)",
+          why: "Roller tubes can't curve! One flush-recessed Matter-over-Thread curved curtain track sweeps sheer drapery across all 4 curved windows (DIN-D1..D4) with zero multi-motor sync issues—saving ~$2.9k vs. Lutron."
+        },
+        "office": {
+          name: "Home Office",
+          tierLbl: "Tier 2 · Single Matter Roller",
+          tierCls: "tier-matter",
+          cost: "$250 – $400",
+          why: "Only West casement OFF-G1 gets direct afternoon sun (2:51p–8:21p), while narrow North slots OFF-A1/A2 sit under Pecan shade. One SmartWings 12V Matter shade handles the glare with no unison issue."
+        },
+        "primary-clst": {
+          name: "Primary Closet",
+          tierLbl: "Tier 3 · Pre-Wire 16/2 ($0 Day 1)",
+          tierCls: "tier-prewire",
+          cost: "$0 Day 1",
+          why: "7'-0\" high clerestory sill under Pecan shade. Make Pocket Door 208's transom solid/opaque so summer 8:21p evening sun can't leak into the bedroom."
+        },
+        "hallway-2": {
+          name: "2nd Floor Hallway",
+          tierLbl: "Tier 3 · Pre-Wire 16/2 ($0 Day 1)",
+          tierCls: "tier-prewire",
+          cost: "$0 Day 1",
+          why: "Beautiful East courtyard morning light for the hallway. Making Pocket Door 209's transom solid blocks 6:46a sunrise from bleeding into the Primary Bedroom—saving ~$2.9k in clerestory shades."
+        },
+        "bath-3": {
+          name: "Primary Bath (Bath 3)",
+          tierLbl: "Tier 3 · Pre-Wire 16/2 ($0 Day 1)",
+          tierCls: "tier-prewire",
+          cost: "$0 Day 1",
+          why: "5'-0\" high sills + 2nd-story elevation + two 24\" Heritage Pecans outside give natural privacy. Pre-wire P1 & Q1 now; add shades later only if desired."
+        },
+        "bath-2": {
+          name: "Bath 2 (Upstairs)",
+          tierLbl: "Tier 3 · Pre-Wire 16/2 ($0 Day 1)",
+          tierCls: "tier-prewire",
+          cost: "$0 Day 1",
+          why: "5'-0\" clerestory sill above vanity + Pecan canopy filtering."
+        },
+        "adu-bdrm": {
+          name: "ADU Bedroom",
+          tierLbl: "Tier 3 · Builder Pre-Wire ($0 Day 1)",
+          tierCls: "tier-prewire",
+          cost: "$0 Day 1 (Future ~$1k Matter)",
+          why: "Pre-wire 16/2 and frame 20\"+ pockets above the narrow B1/B2 windows now; drop in 4 inexpensive Matter blackout shades whenever guests or tenants move in."
+        },
+        "adu-living": {
+          name: "ADU Living & Kitchenette",
+          tierLbl: "Built-In Blinds & Glass Block ($0)",
+          tierCls: "tier-prewire",
+          cost: "$0",
+          why: "Door 301 already specifies integrated blinds on Sheet A2.3, and V1/V2 are translucent privacy glass block."
+        },
+        "bath-1": {
+          name: "Bath 1 (1st Floor)",
+          tierLbl: "Tier 3 · Pre-Wire 16/2 ($0 Day 1)",
+          tierCls: "tier-prewire",
+          cost: "$0 Day 1",
+          why: "6'-0\" high clerestory sill provides standing privacy."
+        }
+      };
+
+      const OPENINGS = [
+        // Second Floor
+        { id:"PRM-N1", floor:"second", room:"primary-bdrm", tier:"lutron", type:"N · 3-Panel Slider", size:"9'-0\" × 6'-0\" (9' Head)", wFt:9, sill:3, head:9, eave:9.8, oh:2, x1:1154.5, y1:696.8, x2:1154.5, y2:858.7, nx:-1, ny:0, face:"S · 170°", sun:"0h Sum / 9.8h Win", price:"$2,200 – $3,000", rec:"Lutron Sivoia QS Wireless (Roller 64 WIDR) + blackout fabric + flush-recessed 2.5\" side channels + sill angle. Frame pocket into 9' vaulted eave." },
+        { id:"PRM-M1", floor:"second", room:"primary-bdrm", tier:"lutron", type:"M · Vaulted Casement", size:"3'-0\" × 9'-0\" (12' Head)", wFt:3, sill:3, head:12, eave:12.5, oh:2, x1:1216.7, y1:918, x2:1270.7, y2:918, nx:0, ny:1, face:"E · 080°", sun:"5.9h Sum (6:46a) / 3.8h Win", price:"$1,500 – $2,100", rec:"Lutron Sivoia QS Wireless + flush-recessed 2.5\" side channels + sill angle at 12' vaulted head. Spec low-profile folding casement crank." },
+        { id:"PRM-M2", floor:"second", room:"primary-bdrm", tier:"lutron", type:"M · Vaulted Casement", size:"3'-0\" × 9'-0\" (12' Head)", wFt:3, sill:3, head:12, eave:12.5, oh:2, x1:1378.6, y1:918, x2:1432.6, y2:918, nx:0, ny:1, face:"E · 080°", sun:"5.9h Sum (6:46a) / 3.8h Win", price:"$1,500 – $2,100", rec:"Lutron Sivoia QS Wireless synced within 1/8\" of PRM-M1 & PRM-N1. Spec low-profile folding casement crank." },
+        { id:"GAM-J1", floor:"second", room:"game-room", tier:"lutron", type:"J · Tall Stair Fixed", size:"3'-0\" × 9'-0\" (12' Head)", wFt:3, sill:3, head:12, eave:12.2, oh:2, x1:2079.8, y1:918, x2:2133.8, y2:918, nx:0, ny:1, face:"E · 080°", sun:"5.8h Sum (6:46a) / 3.8h Win", price:"$850 – $1,250", rec:"Lutron Triathlon/Serena 12V room-darkening roller in 12' stair head pocket—unreachable by hand and blocks direct morning glare onto GAM-TV1." },
+        { id:"GAM-K1", floor:"second", room:"game-room", tier:"lutron", type:"K · East Clerestory", size:"4'-0\" × 3'-0\" (9' Head)", wFt:4, sill:6, head:9, eave:9.5, oh:2, x1:1925.7, y1:918, x2:1997.7, y2:918, nx:0, ny:1, face:"E · 080°", sun:"4.6h Sum / 3.0h Win", price:"$650 – $950", rec:"Lutron Triathlon/Serena 12V in 9' pocket—moves in unison with GAM-J1 & GAM-S1 when watching TV in the morning." },
+        { id:"GAM-S1", floor:"second", room:"game-room", tier:"lutron", type:"S · West Casement", size:"3'-0\" × 6'-0\" (8' Head)", wFt:3, sill:2, head:8, eave:9.5, oh:2, x1:1901.7, y1:529.5, x2:1955.7, y2:529.5, nx:0, ny:-1, face:"W · 260°", sun:"5.8h Sum (2:36p–8:21p)", price:"$750 – $1,100", rec:"Lutron Triathlon/Serena 12V room-darkening roller blocking hot Austin West afternoon sun." },
+        { id:"GAM-I1", floor:"second", room:"game-room", tier:"prewire", type:"I · 18\" Narrow Slot", size:"1'-6\" × 6'-0\" (8.5' Head)", wFt:1.5, sill:2.5, head:8.5, eave:9.5, oh:2, x1:2145.8, y1:529.5, x2:2172.8, y2:529.5, nx:0, ny:-1, face:"W · 260° (Pecan)", sun:"5.8h Pecan-Filtered", price:"$0 Day 1 (Pre-Wire)", rec:"18\" width is below Lutron roller min (19.5\"). Pre-wire 16/2 + frame ≥20\" pocket; add ~$250 SmartWings Matter shade later only if needed." },
+        { id:"GAM-I2", floor:"second", room:"game-room", tier:"prewire", type:"I · 18\" North Slot", size:"1'-6\" × 6'-0\"", wFt:1.5, sill:2.5, head:8.5, eave:9.5, oh:2, x1:2196, y1:563.9, x2:2196, y2:590.9, nx:1, ny:0, face:"N · 350° (Pecan)", sun:"0h Win / Pecan Graze Sum", price:"$0 Day 1 (Pre-Wire)", rec:"North-facing under 22\" Pecan shade—zero TV glare. Pre-wire 16/2 only." },
+        { id:"GAM-I3", floor:"second", room:"game-room", tier:"prewire", type:"I · 18\" North Slot", size:"1'-6\" × 6'-0\"", wFt:1.5, sill:2.5, head:8.5, eave:9.5, oh:2, x1:2196, y1:818.6, x2:2196, y2:845.6, nx:1, ny:0, face:"N · 350° (Pecan)", sun:"0h Win / Pecan Graze Sum", price:"$0 Day 1 (Pre-Wire)", rec:"North-facing accent slot over stairs. Pre-wire 16/2 only." },
+        { id:"GAM-I4", floor:"second", room:"game-room", tier:"prewire", type:"I · 18\" North Slot", size:"1'-6\" × 6'-0\"", wFt:1.5, sill:2.5, head:8.5, eave:9.5, oh:2, x1:2196, y1:852.7, x2:2196, y2:879.7, nx:1, ny:0, face:"N · 350° (Pecan)", sun:"0h Win / Pecan Graze Sum", price:"$0 Day 1 (Pre-Wire)", rec:"North-facing accent slot over stairs. Pre-wire 16/2 only." },
+        { id:"H2-K1", floor:"second", room:"hallway-2", tier:"prewire", type:"K · Hall Clerestory", size:"4'-0\" × 3'-0\"", wFt:4, sill:6, head:9, eave:9.5, oh:2, x1:1574.8, y1:918, x2:1646.8, y2:918, nx:0, ny:1, face:"E · 080°", sun:"4.6h Sum (6:46a)", price:"$0 Day 1 (Pre-Wire)", rec:"Leave unshaded for natural hall light; make Primary Door 209 transom solid so morning light stays in the hall." },
+        { id:"H2-L1", floor:"second", room:"hallway-2", tier:"prewire", type:"L · 10' Hall Clerestory", size:"10'-0\" × 3'-0\"", wFt:10, sill:6, head:9, eave:9.5, oh:2, x1:1696.3, y1:918, x2:1876.3, y2:918, nx:0, ny:1, face:"E · 080°", sun:"4.6h Sum (6:46a)", price:"$0 Day 1 (Pre-Wire)", rec:"Pre-wire 16/2 only; solid transom on Door 209 protects Primary Bedroom." },
+        { id:"PCL-O1", floor:"second", room:"primary-clst", tier:"prewire", type:"O · Closet Clerestory", size:"9'-0\" × 2'-0\"", wFt:9, sill:7, head:9, eave:9.5, oh:2, x1:1243.7, y1:529.5, x2:1405.6, y2:529.5, nx:0, ny:-1, face:"W · 260° (Pecan)", sun:"3.8h Late Aft (Pecan)", price:"$0 Day 1 (Pre-Wire)", rec:"7' high sill; make Pocket Door 208 transom solid so 8:21p summer sunset doesn't enter bedroom." },
+        { id:"B3-P1", floor:"second", room:"bath-3", tier:"prewire", type:"P · Bath Picture", size:"7'-2\" × 3'-0\"", wFt:7.2, sill:5, head:8, eave:9.5, oh:2, x1:1525.6, y1:529.5, x2:1654.6, y2:529.5, nx:0, ny:-1, face:"W · 260° (Pecan)", sun:"5.1h Pecan-Filtered", price:"$0 Day 1 (Pre-Wire)", rec:"5' sill + 24\" Pecan canopy directly outside. Pre-wire 16/2 for optional future privacy shade." },
+        { id:"B3-Q1", floor:"second", room:"bath-3", tier:"prewire", type:"Q · WC Casement", size:"3'-0\" × 3'-0\"", wFt:3, sill:5, head:8, eave:9.5, oh:2, x1:1690.6, y1:529.5, x2:1744.6, y2:529.5, nx:0, ny:-1, face:"W · 260° (Pecan)", sun:"5.1h Pecan-Filtered", price:"$0 Day 1 (Pre-Wire)", rec:"5' sill + Pecan canopy. Pre-wire 16/2 only." },
+        { id:"B2-R1", floor:"second", room:"bath-2", tier:"prewire", type:"R · Vanity Clerestory", size:"5'-0\" × 3'-0\"", wFt:5, sill:5, head:8, eave:9.5, oh:2, x1:1754.3, y1:529.5, x2:1844.3, y2:529.5, nx:0, ny:-1, face:"W · 260° (Pecan)", sun:"5.1h Pecan-Filtered", price:"$0 Day 1 (Pre-Wire)", rec:"5' sill above Bath 2 vanity. Pre-wire 16/2 only." },
+
+        // First Floor
+        { id:"LIV-D108", floor:"first", room:"living", tier:"lutron", type:"108 · 12'×10' Arched Doors", size:"12'-0\" × 10'-0\"", wFt:12, sill:0, head:10, eave:11, oh:2, x1:1676.7, y1:917.7, x2:1892.7, y2:917.7, nx:0, ny:1, face:"E · 080°", sun:"6.0h Sum (6:46a–12:41p)", price:"$1,800 – $2,800", rec:"Lutron Triathlon WIDR 12V solar roller in straight 4.5\"×4.5\" pocket inside 10' flat ceiling—clears curved top corners and blocks morning glare on LIV-TV1." },
+        { id:"LIV-E1", floor:"first", room:"living", tier:"lutron", type:"E · Full-Height Fixed", size:"3'-0\" × 10'-0\"", wFt:3, sill:0, head:10, eave:10.5, oh:2, x1:1681.6, y1:529.5, x2:1735.6, y2:529.5, nx:0, ny:-1, face:"W · 260° (Pecan)", sun:"5.6h Pecan-Filtered", price:"$850 – $1,250", rec:"Lutron Triathlon/Serena 12V roller synced within 1/8\" of LIV-D108." },
+        { id:"DIN-C1", floor:"first", room:"dining", tier:"lutron", type:"C · Courtyard Fixed", size:"3'-0\" × 10'-0\"", wFt:3, sill:0, head:10, eave:10.5, oh:2, x1:1611.5, y1:930.8, x2:1611.5, y2:984.8, nx:1, ny:0, face:"N · 350°", sun:"1.8h Sum / 0h Eq & Win!", price:"$850 – $1,250 (Opt. $0)", rec:"Faces North 350° into courtyard (almost zero direct sun). Keep on Lutron for visual unison next to LIV-D108, or pre-wire only to save ~$1,050." },
+        { id:"DIN-D1", floor:"first", room:"dining", tier:"matter", type:"D · Curved Banquette #1", size:"2'-9\" × 7'-0\" (Curved)", wFt:2.75, sill:3, head:10, eave:10.5, oh:2, x1:1379.1, y1:950.6, x2:1388.2, y2:995.4, nx:-0.98, ny:0.20, face:"SSE · 158°", sun:"6.1h Eq (7:47a–1:47p)", price:"Shared Curved Track", rec:"Covered by single flush-recessed Matter-over-Thread curved curtain track + custom sheer drapery ($1,100–$2,100 total across DIN-D1..D4)." },
+        { id:"DIN-D2", floor:"first", room:"dining", tier:"matter", type:"D · Curved Banquette #2", size:"2'-9\" × 7'-0\" (Curved)", wFt:2.75, sill:3, head:10, eave:10.5, oh:2, x1:1389.5, y1:998.4, x2:1415.1, y2:1036.4, nx:-0.83, ny:0.56, face:"SE · 136°", sun:"6.4h Eq (7:47a–2:07p)", price:"Shared Curved Track", rec:"Covered by the single recessed Matter curved sheer curtain track (tucked 120V outlet at track end)." },
+        { id:"DIN-D3", floor:"first", room:"dining", tier:"matter", type:"D · Curved Banquette #3", size:"2'-9\" × 7'-0\" (Curved)", wFt:2.75, sill:3, head:10, eave:10.5, oh:2, x1:1417.4, y1:1038.7, x2:1455.6, y2:1063.9, nx:-0.55, ny:0.83, face:"ESE · 114°", sun:"5.8h Morning–Midday", price:"Shared Curved Track", rec:"Covered by the single recessed Matter curved sheer curtain track." },
+        { id:"DIN-D4", floor:"first", room:"dining", tier:"matter", type:"D · Curved Banquette #4", size:"2'-9\" × 7'-0\" (Curved)", wFt:2.75, sill:3, head:10, eave:10.5, oh:2, x1:1458.6, y1:1065.2, x2:1503.5, y2:1073.9, nx:-0.19, ny:0.98, face:"E · 091°", sun:"5.8h Morning–Midday", price:"Shared Curved Track", rec:"Covered by the single recessed Matter curved sheer curtain track." },
+        { id:"OFF-G1", floor:"first", room:"office", tier:"matter", type:"G · West Casement", size:"3'-0\" × 5'-0\" (8' Head)", wFt:3, sill:3, head:8, eave:9.5, oh:2, x1:1974.8, y1:381, x2:2028.8, y2:381, nx:0, ny:-1, face:"W · 260°", sun:"5.6h Sum (2:51p–8:21p)", price:"$250 – $400", rec:"Single SmartWings Hardwired 12V Matter-over-Thread roller hidden in 9' ceiling pocket—solves afternoon desk glare with no multi-shade sync needed." },
+        { id:"OFF-A1", floor:"first", room:"office", tier:"prewire", type:"A · 18\" North Slot", size:"1'-6\" × 5'-0\"", wFt:1.5, sill:3, head:8, eave:9.5, oh:2, x1:2161, y1:405.5, x2:2161, y2:432.5, nx:1, ny:0, face:"N · 350° (Pecan)", sun:"0h Win / Pecan Eve Sum", price:"$0 Day 1 (Pre-Wire)", rec:"North-facing & Pecan-filtered. Pre-wire 16/2 + ≥20\" pocket; skip Day 1." },
+        { id:"OFF-A2", floor:"first", room:"office", tier:"prewire", type:"A · 18\" North Slot", size:"1'-6\" × 5'-0\"", wFt:1.5, sill:3, head:8, eave:9.5, oh:2, x1:2197, y1:563.9, x2:2197, y2:590.9, nx:1, ny:0, face:"N · 350° (Pecan)", sun:"0h Win / Pecan Eve Sum", price:"$0 Day 1 (Pre-Wire)", rec:"North-facing & Pecan-filtered. Pre-wire 16/2 + ≥20\" pocket; skip Day 1." },
+        { id:"B1-F1", floor:"first", room:"bath-1", tier:"prewire", type:"F · Bath Clerestory", size:"5'-0\" × 3'-0\"", wFt:5, sill:6, head:9, eave:9.5, oh:2, x1:1805.5, y1:435.1, x2:1805.5, y2:525.1, nx:-1, ny:0, face:"S · 170° (Pecan)", sun:"0h Sum / 5.8h Win", price:"$0 Day 1 (Pre-Wire)", rec:"6'-0\" high clerestory sill provides standing privacy." },
+        { id:"AD-BED-B1", floor:"first", room:"adu-bdrm", tier:"prewire", type:"B · ADU Tall Fixed", size:"1'-6\" × 10'-0\"", wFt:1.5, sill:0, head:10, eave:10.5, oh:2, x1:173.8, y1:394.8, x2:173.8, y2:421.8, nx:-1, ny:0, face:"S · 170°", sun:"0h Sum / 10.3h Eq!", price:"$0 Day 1 (Pre-Wire)", rec:"Pre-wire 16/2 + ≥20\" ceiling pocket during framing; add Matter blackout shade when ADU is occupied." },
+        { id:"AD-BED-B2", floor:"first", room:"adu-bdrm", tier:"prewire", type:"B · ADU Tall Fixed", size:"1'-6\" × 10'-0\"", wFt:1.5, sill:0, head:10, eave:10.5, oh:2, x1:173.8, y1:541.8, x2:173.8, y2:568.8, nx:-1, ny:0, face:"S · 170°", sun:"0h Sum / 10.3h Eq!", price:"$0 Day 1 (Pre-Wire)", rec:"Pre-wire 16/2 + ≥20\" ceiling pocket during framing." },
+        { id:"AD-BED-G1", floor:"first", room:"adu-bdrm", tier:"prewire", type:"G · ADU West Casement", size:"3'-0\" × 5'-0\"", wFt:3, sill:3, head:8, eave:10.5, oh:2, x1:200.4, y1:375.4, x2:254.4, y2:375.4, nx:0, ny:-1, face:"W · 260°", sun:"5.8h Afternoon Sun", price:"$0 Day 1 (Pre-Wire)", rec:"Pre-wire 16/2 now; add SmartWings Matter blackout roller later (~$250)." },
+        { id:"AD-BED-G2", floor:"first", room:"adu-bdrm", tier:"prewire", type:"G · ADU West Casement", size:"3'-0\" × 5'-0\"", wFt:3, sill:3, head:8, eave:10.5, oh:2, x1:316.3, y1:375.4, x2:370.3, y2:375.4, nx:0, ny:-1, face:"W · 260°", sun:"5.8h Afternoon Sun", price:"$0 Day 1 (Pre-Wire)", rec:"Pre-wire 16/2 now; add SmartWings Matter blackout roller later (~$250)." },
+        { id:"AD-LIV-D301", floor:"first", room:"adu-living", tier:"skip", type:"301 · Door w/ Built-In Blinds", size:"8'-9\" × 10'-0\"", wFt:8.75, sill:0, head:10, eave:10.5, oh:2, x1:176.5, y1:673.8, x2:176.5, y2:829.8, nx:-1, ny:0, face:"S · 170°", sun:"0h Sum / 10.3h Eq", price:"$0 (Integrated)", rec:"Sheet A2.3 already specifies integrated blinds inside the glass—no shade needed!" }
+      ];
+
+      let activeFloor = "second";
+      let activeDate = "2026-03-20";
+      let sunMins = 540; // 9:00 AM
+      let selectedRoom = "primary-bdrm";
+      let selectedWinId = "PRM-N1";
+      let playingSun = false;
+      let sunRaf = null;
+
+      const fpSvg = document.getElementById("floorplan-svg");
+      const sunSlider = document.getElementById("sun-slider");
+      const sunClockLbl = document.getElementById("sun-clock-lbl");
+      const chkPecan = document.getElementById("chk-pecan");
+
+      const COMPASS = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+      function fmtTime(mins) {
+        const m = ((Math.round(mins) % 1440) + 1440) % 1440;
+        const h24 = Math.floor(m / 60), mm = String(m % 60).padStart(2, "0");
+        const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
+        return `${h12}:${mm} ${h24 >= 12 ? "PM" : "AM"}`;
+      }
+
+      function computeSun(dateStr, mins) {
+        const [y, mo, d] = dateStr.split("-").map(Number);
+        const doy = Math.floor((Date.UTC(y, mo - 1, d) - Date.UTC(y, 0, 1)) / 86400000) + 1;
+        const dst = mo > 3 && mo < 11 ? -5 : (mo === 3 && d >= 10 ? -5 : -6);
+        const lat = (30.0 * Math.PI) / 180;
+        const gamma = ((2 * Math.PI) / 365) * (doy - 1 + (mins / 60 - 12) / 24);
+        const eq = 229.18 * (0.000075 + 0.001868 * Math.cos(gamma) - 0.032077 * Math.sin(gamma) - 0.014615 * Math.cos(2 * gamma) - 0.040849 * Math.sin(2 * gamma));
+        const decl = 0.006918 - 0.399912 * Math.cos(gamma) + 0.070257 * Math.sin(gamma) - 0.006758 * Math.cos(2 * gamma);
+        const ha = (((mins + eq + 4 * -98.0 - 60 * dst) / 4) - 180) * (Math.PI / 180);
+        const sinAlt = Math.sin(lat) * Math.sin(decl) + Math.cos(lat) * Math.cos(decl) * Math.cos(ha);
+        const altRad = Math.asin(Math.max(-1, Math.min(1, sinAlt)));
+        const altDeg = (altRad * 180) / Math.PI;
+        const azRad = Math.atan2(Math.sin(ha), Math.cos(ha) * Math.sin(lat) - Math.tan(decl) * Math.cos(lat));
+        const azDeg = (((azRad * 180) / Math.PI + 180) % 360 + 360) % 360;
+        const scrRad = ((10.0 + azDeg) * Math.PI) / 180;
+        const tx = Math.cos(scrRad), ty = Math.sin(scrRad);
+        return {
+          altDeg, altRad, azDeg,
+          compass: COMPASS[Math.round(azDeg / 22.5) % 16],
+          tx, ty, rx: -tx, ry: -ty,
+          leafy: mo >= 4 && mo <= 10
+        };
+      }
+
+      function tierColor(tier) {
+        if (tier === "lutron") return "#b85d19";
+        if (tier === "matter") return "#1f6f5c";
+        if (tier === "prewire") return "#78716c";
+        return "#94a3b8";
+      }
+
+      function renderFloorplan() {
+        const sun = computeSun(activeDate, sunMins);
+        const altTxt = sun.altDeg > 0 ? `${Math.round(sun.altDeg)}° alt` : "Below Horizon";
+        sunClockLbl.textContent = `${fmtTime(sunMins)} · ${sun.compass} ${String(Math.round(sun.azDeg)).padStart(3,"0")}° (${altTxt})`;
+
+        // Set viewBox based on floor
+        if (activeFloor === "second") {
+          fpSvg.setAttribute("viewBox", "1080 390 1200 620");
+        } else {
+          fpSvg.setAttribute("viewBox", "110 290 2230 850");
+        }
+
+        const rooms = ROOM_POLYS[activeFloor];
+        const wins = OPENINGS.filter((o) => o.floor === activeFloor);
+        const usePecan = chkPecan.checked;
+        const tanAlt = Math.max(0.1, Math.tan(sun.altRad));
+
+        let html = `<defs>`;
+        rooms.forEach((r) => {
+          html += `<clipPath id="cp-${r.id}"><polygon points="${r.pts.map(p => p.join(",")).join(" ")}" /></clipPath>`;
+        });
+        html += `</defs>`;
+
+        // Compass badge in corner
+        const cX = activeFloor === "second" ? 1135 : 220;
+        const cY = activeFloor === "second" ? 445 : 365;
+        html += `<g transform="translate(${cX},${cY})">
+          <circle cx="0" cy="0" r="28" fill="var(--bg-elev)" stroke="var(--line-strong)" stroke-width="1.5"/>
+          <text x="20" y="4" font-size="10" font-family="monospace" fill="var(--ink-muted)">N</text>
+          <text x="-4" y="23" font-size="10" font-family="monospace" fill="var(--ink-muted)">E</text>
+          <text x="-26" y="4" font-size="10" font-family="monospace" fill="var(--ink-muted)">S</text>
+          <text x="-5" y="-15" font-size="10" font-family="monospace" fill="var(--ink-muted)">W</text>
+          ${sun.altDeg > 0 ? `<circle cx="${(sun.tx * 24).toFixed(1)}" cy="${(sun.ty * 24).toFixed(1)}" r="6" fill="#e59500"/>` : ""}
+        </g>`;
+
+        // Pool Courtyard indicator on 1st floor
+        if (activeFloor === "first") {
+          html += `<rect x="1655" y="960" width="260" height="135" rx="28" fill="rgba(56,189,248,0.16)" stroke="rgba(2,132,199,0.35)" stroke-width="1.8"/>
+                   <text x="1785" y="1032" text-anchor="middle" font-size="15" font-family="monospace" fill="#0284c7" opacity="0.8">COURTYARD POOL (EAST)</text>`;
+        }
+
+        // Pecan tree canopies along West (top of screen)
+        if (usePecan) {
+          TREES.forEach((tr) => {
+            html += `<circle cx="${tr.cx}" cy="${tr.cy}" r="${tr.r}" fill="rgba(77,124,71,${sun.leafy ? 0.16 : 0.07})" stroke="rgba(77,124,71,0.45)" stroke-width="1.8" stroke-dasharray="6 5"/>`;
+          });
+        }
+
+        // Room footprints
+        rooms.forEach((r) => {
+          const sel = r.id === selectedRoom ? " selected" : "";
+          html += `<polygon class="fp-room${sel}" data-room-click="${r.id}" points="${r.pts.map(p => p.join(",")).join(" ")}" />`;
+        });
+
+        // Clipped indoor sunbeams per window
+        if (sun.altDeg > 1.5) {
+          wins.forEach((w) => {
+            const cosInc = w.nx * sun.tx + w.ny * sun.ty;
+            if (cosInc <= 0.04) return;
+            const drop = (w.oh * tanAlt) / Math.max(0.08, cosInc);
+            const effHead = Math.min(w.head, w.eave - drop);
+            if (effHead <= w.sill + 0.1) return;
+
+            let treeFac = 1.0;
+            if (usePecan) {
+              const baseZ = activeFloor === "second" ? 11.7 : 0;
+              const midZ = baseZ + (w.sill + effHead) * 0.5;
+              const cx = (w.x1 + w.x2) / 2, cy = (w.y1 + w.y2) / 2;
+              TREES.forEach((tr) => {
+                const vx = tr.cx - cx, vy = tr.cy - cy;
+                const tp = vx * sun.tx + vy * sun.ty;
+                if (tp > 0 && (vx*vx + vy*vy - tp*tp) < tr.r*tr.r) {
+                  const zTree = midZ + (tp / 18.0) * tanAlt;
+                  if (zTree >= tr.base && zTree <= tr.h + 2) treeFac *= (sun.leafy ? 0.36 : 0.76);
+                }
+              });
+            }
+
+            const dNear = (w.sill / tanAlt) * 18.0;
+            const dFar = Math.min(36, effHead / tanAlt) * 18.0;
+            const x1n = w.x1 + sun.rx * dNear, y1n = w.y1 + sun.ry * dNear;
+            const x2n = w.x2 + sun.rx * dNear, y2n = w.y2 + sun.ry * dNear;
+            const x1f = w.x1 + sun.rx * dFar,  y1f = w.y1 + sun.ry * dFar;
+            const x2f = w.x2 + sun.rx * dFar,  y2f = w.y2 + sun.ry * dFar;
+            const op = Math.min(0.48, (0.18 + 0.34 * cosInc) * treeFac);
+
+            html += `<g clip-path="url(#cp-${w.room})" pointer-events="none">
+              <polygon points="${x1n.toFixed(1)},${y1n.toFixed(1)} ${x2n.toFixed(1)},${y2n.toFixed(1)} ${x2f.toFixed(1)},${y2f.toFixed(1)} ${x1f.toFixed(1)},${y1f.toFixed(1)}" fill="#f59e0b" fill-opacity="${op.toFixed(2)}" />
+            </g>`;
+          });
+        }
+
+        // Room Labels & TV Markers
+        rooms.forEach((r) => {
+          const fs = activeFloor === "second" ? 13.5 : 16;
+          html += `<text x="${r.x}" y="${r.y}" text-anchor="middle" font-size="${fs}" font-weight="600" fill="var(--ink-secondary)" pointer-events="none">${r.label}</text>`;
+        });
+
+        if (activeFloor === "first") {
+          html += `<rect x="1765" y="542" width="84" height="16" rx="4" fill="#1e293b"/><text x="1807" y="553" text-anchor="middle" font-size="10" font-family="monospace" fill="#fff">LIV-TV1</text>`;
+        } else {
+          html += `<rect x="2024" y="540" width="84" height="16" rx="4" fill="#1e293b"/><text x="2066" y="551" text-anchor="middle" font-size="10" font-family="monospace" fill="#fff">GAM-TV1</text>`;
+        }
+
+        // Window Bars & Interactive Badges
+        wins.forEach((w) => {
+          const col = tierColor(w.tier);
+          const isSel = w.id === selectedWinId;
+          const cx = (w.x1 + w.x2) / 2, cy = (w.y1 + w.y2) / 2;
+          const sw = isSel ? (activeFloor === "second" ? 11 : 14) : (activeFloor === "second" ? 7 : 9);
+          html += `<g class="fp-win-hit" data-win-click="${w.id}">
+            <line x1="${w.x1}" y1="${w.y1}" x2="${w.x2}" y2="${w.y2}" stroke="transparent" stroke-width="26"/>
+            <line x1="${w.x1}" y1="${w.y1}" x2="${w.x2}" y2="${w.y2}" stroke="${col}" stroke-width="${sw}" stroke-linecap="round"/>
+            ${isSel ? `<circle cx="${cx}" cy="${cy}" r="${activeFloor === "second" ? 13 : 18}" fill="none" stroke="${col}" stroke-width="2.5"/>` : ""}
+          </g>`;
+        });
+
+        fpSvg.innerHTML = html;
+
+        fpSvg.querySelectorAll("[data-room-click]").forEach((el) => {
+          el.addEventListener("click", () => selectRoom(el.dataset.roomClick));
+        });
+        fpSvg.querySelectorAll("[data-win-click]").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            e.stopPropagation();
+            selectWindow(el.dataset.winClick);
+          });
+        });
+      }
+
+      function updateInspector() {
+        const info = ROOM_INFO[selectedRoom] || {
+          name: selectedRoom.toUpperCase(),
+          tierLbl: "No Shades Needed ($0)",
+          tierCls: "tier-prewire",
+          cost: "$0",
+          why: "Interior, covered, or diffused glass-block space—no motorized shades required."
+        };
+        const tierEl = document.getElementById("insp-tier");
+        tierEl.textContent = info.tierLbl;
+        tierEl.className = `tier-tag ${info.tierCls}`;
+        document.getElementById("insp-cost").textContent = info.cost;
+        document.getElementById("insp-room-name").textContent = info.name;
+        document.getElementById("insp-room-why").textContent = info.why;
+
+        const roomWins = OPENINGS.filter((o) => o.room === selectedRoom);
+        const pillsEl = document.getElementById("insp-win-pills");
+        const detBox = document.getElementById("insp-win-detail");
+
+        if (!roomWins.length) {
+          pillsEl.innerHTML = `<span style="font-size:12.5px;color:var(--ink-muted);">No exterior windows requiring shades in this space.</span>`;
+          detBox.style.display = "none";
+          return;
+        }
+        detBox.style.display = "block";
+        if (!roomWins.some((w) => w.id === selectedWinId)) {
+          selectedWinId = roomWins[0].id;
+        }
+
+        pillsEl.innerHTML = roomWins.map((w) =>
+          `<button type="button" class="win-pill${w.id === selectedWinId ? " active" : ""}" data-pill-win="${w.id}">${w.id}</button>`
+        ).join("");
+
+        pillsEl.querySelectorAll("[data-pill-win]").forEach((btn) => {
+          btn.addEventListener("click", () => selectWindow(btn.dataset.pillWin));
+        });
+
+        const w = OPENINGS.find((x) => x.id === selectedWinId) || roomWins[0];
+        document.getElementById("wdet-id").textContent = w.id;
+        document.getElementById("wdet-type").textContent = w.type;
+        document.getElementById("wdet-size").textContent = w.size;
+        document.getElementById("wdet-face").textContent = `${w.face} (${w.oh}' OH)`;
+        document.getElementById("wdet-sun").textContent = w.sun;
+        document.getElementById("wdet-price").textContent = w.price;
+        document.getElementById("wdet-rec").textContent = w.rec;
+      }
+
+      function selectRoom(roomId) {
+        selectedRoom = roomId;
+        const rw = OPENINGS.filter((o) => o.room === roomId);
+        if (rw.length) selectedWinId = rw[0].id;
+        updateInspector();
+        renderFloorplan();
+      }
+
+      function selectWindow(winId) {
+        const w = OPENINGS.find((o) => o.id === winId);
+        if (!w) return;
+        selectedWinId = w.id;
+        selectedRoom = w.room;
+        updateInspector();
+        renderFloorplan();
+      }
+
+      document.querySelectorAll("[data-floor-btn]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeFloor = btn.dataset.floorBtn;
+          document.querySelectorAll("[data-floor-btn]").forEach((b) => b.classList.toggle("active", b === btn));
+          selectedRoom = activeFloor === "second" ? "primary-bdrm" : "living";
+          const rw = OPENINGS.filter((o) => o.room === selectedRoom);
+          if (rw.length) selectedWinId = rw[0].id;
+          updateInspector();
+          renderFloorplan();
+        });
+      });
+
+      document.querySelectorAll("[data-season-btn]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeDate = btn.dataset.seasonBtn;
+          document.querySelectorAll("[data-season-btn]").forEach((b) => b.classList.toggle("active", b === btn));
+          renderFloorplan();
+        });
+      });
+
+      sunSlider.addEventListener("input", () => {
+        sunMins = Number(sunSlider.value);
+        renderFloorplan();
+      });
+      chkPecan.addEventListener("change", renderFloorplan);
+
+      const playBtn = document.getElementById("btn-play-sun");
+      playBtn.addEventListener("click", () => {
+        playingSun = !playingSun;
+        playBtn.textContent = playingSun ? "❚❚ Pause" : "▶ Play Day";
+        if (!playingSun) {
+          if (sunRaf) cancelAnimationFrame(sunRaf);
+          return;
+        }
+        let last = performance.now();
+        function loop(now) {
+          if (!playingSun) return;
+          if (now - last > 45) {
+            last = now;
+            sunMins += 5;
+            if (sunMins > 1160) sunMins = 415;
+            sunSlider.value = String(sunMins);
+            renderFloorplan();
+          }
+          sunRaf = requestAnimationFrame(loop);
+        }
+        sunRaf = requestAnimationFrame(loop);
+      });
+
+      updateInspector();
+      renderFloorplan();
+
+      // ====================================================================
+      // 5. Interactive Budget Calculator
+      // ====================================================================
+      const chks = document.querySelectorAll(".budget-chk");
+      function recalcBudget() {
+        let minSum = 1310; // Base Caséta PRO hub + power supplies + 16/2 prewire
+        let maxSum = 2250;
+        let lutronCnt = 0;
+        let matterCnt = 0;
+
+        chks.forEach((c) => {
+          if (c.checked) {
+            minSum += Number(c.dataset.min);
+            maxSum += Number(c.dataset.max);
+            lutronCnt += Number(c.dataset.lutron);
+            matterCnt += Number(c.dataset.matter);
+          }
+        });
+
+        const mid = Math.round((minSum + maxSum) / 2);
+        const v1Mid = 25730;
+        const saved = v1Mid - mid;
+
+        document.getElementById("calc-total").textContent = `$${minSum.toLocaleString()} – $${maxSum.toLocaleString()}`;
+        document.getElementById("calc-motors").innerHTML =
+          `Includes Caséta PRO Hub, plug-in/12V power supplies &amp; whole-home <code>16/2</code> pre-wire ($1,310–$2,250) · <strong>${lutronCnt} Lutron + ${matterCnt} Matter motor${matterCnt === 1 ? "" : "s"}</strong>`;
+        document.getElementById("bar-yours-lbl").textContent = `$${mid.toLocaleString()} avg`;
+        document.getElementById("bar-yours").style.width = `${Math.min(100, Math.round((mid / 35980) * 100))}%`;
+        document.getElementById("calc-savings").textContent = saved >= 0
+          ? `~$${saved.toLocaleString()} saved`
+          : `+$${Math.abs(saved).toLocaleString()} (includes framing)`;
+        document.getElementById("caseta-cap-note").textContent =
+          `✓ Caséta 75-device hub check: ${lutronCnt} Lutron shades leaves ${74 - lutronCnt} slots for Caséta switches & Picos on 1 hub.`;
+      }
+      chks.forEach((c) => c.addEventListener("change", recalcBudget));
+      recalcBudget();
+    })();
+  </script>
+</body>
+</html>
